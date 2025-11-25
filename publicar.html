@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h2>Publicar producto</h2>
+  <form method="post" enctype="multipart/form-data">
+    <label>Nombre:
+      <input type="text" name="nombre" required>
+    </label><br>
+
+    <label>Descripción:
+      <textarea name="descripcion" required></textarea>
+    </label><br>
+
+    <label>Precio:
+      <input type="number" name="precio" step="0.01" required>
+    </label><br>
+
+    <label>Estado:
+      <input type="text" name="estado" required>
+    </label><br>
+
+    <label>Categoría:
+      <select name="categoria" required>
+        {% for c in categorias %}
+          <option value="{{ c.id }}">{{ c.nombre }}</option>
+        {% endfor %}
+      </select>
+    </label><br>
+
+    <label>Imagen:
+      <input type="file" name="imagen" accept="image/*">
+    </label><br>
+
+    <button type="submit">Publicar</button>
+  </form>
+
+  <a href="{{ url_for('index') }}">Volver al inicio</a>
+{% endblock %}
